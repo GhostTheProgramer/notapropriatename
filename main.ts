@@ -1,11 +1,17 @@
 info.onCountdownEnd(function () {
     game.over(true)
 })
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Projectile, function (sprite, otherSprite) {
+    Projectile3.setPosition(Projectile3.x, randint(20, 110))
+    projectile.setPosition(projectile.x, randint(20, 110))
+    Projectile2.setPosition(Projectile2.x, randint(20, 110))
+    Projectile4.setPosition(Projectile4.x, randint(20, 110))
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
-    Projectile3.setPosition(160, randint(10, 30))
-    projectile.setPosition(160, randint(30, 50))
-    Projectile2.setPosition(160, randint(50, 90))
-    Projectile4.setPosition(160, randint(90, 110))
+    Projectile3.setPosition(160, randint(20, 110))
+    projectile.setPosition(160, randint(20, 110))
+    Projectile2.setPosition(160, randint(20, 110))
+    Projectile4.setPosition(160, randint(20, 110))
     info.setLife(info.life() - 1)
 })
 let Projectile4: Sprite = null
@@ -231,6 +237,11 @@ projectile.y = 80
 Projectile3.y = 80
 Projectile2.y = 80
 Projectile4.y = 80
+forever(function () {
+    if (mySprite.y <= 15) {
+        mySprite.setPosition(mySprite.x, 20)
+    }
+})
 forever(function () {
     if (controller.up.isPressed()) {
         mySprite.setImage(img`
